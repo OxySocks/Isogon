@@ -6,8 +6,10 @@ import (
 	"github.com/go-martini/martini"
 )
 
+// Initialization function that handles basic migration functions for the domotisocks system.
+// TODO: Make database settings configurable
 func init() {
-	db, err := gorm.Open("mysql", "root:root@tcp(127.0.0.1:3306)/gormtest?charset=utf8&parseTime=True")
+	db, err := gorm.Open("mysql", "root:root@tcp(127.0.0.1:3306)/domotisocks?charset=utf8&parseTime=True")
 
 	if err != nil {
 		panic(err)
@@ -18,14 +20,14 @@ func init() {
 	db.AutoMigrate(&Measurement{}, &Node{})
 }
 
+// Martini handler to couple the GORM database to all route handlers.
+// Allows gorm.DB to be used as a parameter
 func dbMiddleware() martini.Handler {
-	db, err := gorm.Open("mysql", "root:root@tcp(127.0.0.1:3306)/gormtest?charset=utf8&parseTime=True")
+	db, err := gorm.Open("mysql", "root:root@tcp(127.0.0.1:3306)/domotisocks?charset=utf8&parseTime=True")
 
 	if(err != nil) {
-		fmt.Println(err)
+		panic(err)
 	}
-
-
 
 	return func(c martini.Context) {
 		c.Map(&db)
