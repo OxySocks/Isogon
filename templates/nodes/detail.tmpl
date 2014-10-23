@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-heading">Measurements</div>
+        <table class="table">
+            <thead>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            </thead>
+            <tbody>
+            {{range .}}
+            <tr>
+                <td>{{ .Temperature }}</td>
+                <td>{{ .Humidity }}</td>
+            </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+</div>

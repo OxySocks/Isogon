@@ -1,0 +1,52 @@
+.container-full {
+    margin: 0 auto;
+    width: 100%;
+    padding: 0px 15px 0px 15px;
+}
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-brand,
+.navbar-brand {
+    background-color: #FF6574
+    color: #FFFFFF;
+}
+
+.navbar {
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border: none;
+    background-color: #F5F5F5;
+    border-bottom: 2px solid #84A28F;
+    color: #FFFFFF;
+}
+
+.navbar-brand,
+.navbar-brand a {
+    color: #84A28F !important;
+    font-size: 1.8em;
+    font-family: "Lobster", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.panel-body,
+.panel-default {
+    background-color: #F5F5F5;
+}
+
+.panel-heading
+{
+    color: #222;
+
+    background-color: #F5F5F5;
+    padding: 10px;
+    border-bottom: 2px solid #84A28F;
+
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-width: 2px;
+}
