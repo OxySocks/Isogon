@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/jinzhu/gorm"
-	"fmt"
 	"github.com/go-martini/martini"
 )
 
