@@ -20,6 +20,10 @@ func main() {
 	api.Run()
 }
 
+func NotFound(w http.ResponseWriter, req *http.Request, r render.Render) {
+	r.HTML(404, "404", nil)
+}
+
 // Construct a new API/ClassicMartini with all associated middleware and routes.
 func NewApi() API {
 	m := martini.Classic()
@@ -46,12 +50,12 @@ func NewApi() API {
 	})
 	m.Group("/node", func(r martini.Router) {
 			r.Get("/:id", NodeDetail)
-			r.Get("/", NodeList)
+			r.Get("", NodeList)
 	})
 
 	m.Get("/", HomePage)
 
-	m.Router.NotFound(strict.MethodNotAllowed, strict.NotFound)
+	m.Router.NotFound(strict.MethodNotAllowed, NotFound)
 	return m
 }
 
