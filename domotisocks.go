@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 	"github.com/codegangsta/martini-contrib/render"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/strict"
