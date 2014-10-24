@@ -1,0 +1,44 @@
+{
+	"ImportPath": "github.com/oxysocks/isogon",
+	"GoVersion": "go1.3.3",
+	"Deps": [
+		{
+			"ImportPath": "github.com/codegangsta/inject",
+			"Comment": "v1.0-rc1-4-g4b81725",
+			"Rev": "4b8172520a03fa190f427bbd284db01b459bfce7"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/martini",
+			"Comment": "v1.0-52-gc842525",
+			"Rev": "c8425257dee954ab8b116b10ded3070821bcaec6"
+		},
+		{
+			"ImportPath": "github.com/codegangsta/martini-contrib/render",
+			"Comment": "v0.1-159-g8ce6181",
+			"Rev": "8ce6181c2609699e4c7cd30994b76a850a9cdadc"
+		},
+		{
+			"ImportPath": "github.com/go-martini/martini",
+			"Comment": "v1.0-50-g7d32ea3",
+			"Rev": "7d32ea3fa6590565c928b90a48178b60b96df98f"
+		},
+		{
+			"ImportPath": "github.com/go-sql-driver/mysql",
+			"Comment": "v1.2-26-g9543750",
+			"Rev": "9543750295406ef070f7de8ae9c43ccddd44e15e"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm",
+			"Rev": "52ba1858c31dcbe1573f46f994d3cdf334729ff4"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Rev": "2e54331858de4ba372014d4ee03ae086b8fcb57d"
+		},
+		{
+			"ImportPath": "github.com/martini-contrib/strict",
+			"Comment": "0.1.0",
+			"Rev": "44893ecfb18d76bd04dcad6a0edd4356eaa31358"
+		}
+	]
+}
