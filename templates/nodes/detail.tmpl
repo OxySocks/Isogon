@@ -3,12 +3,14 @@
         <div class="panel-heading">Measurements</div>
         <table class="table">
             <thead>
+            <th>Timestamp</th>
             <th>Temperature</th>
             <th>Humidity</th>
             </thead>
             <tbody>
             {{range .}}
             <tr>
+                <td>{{ .RegistrationTime }}</td>
                 <td>{{ .Temperature }}</td>
                 <td>{{ .Humidity }}</td>
             </tr>

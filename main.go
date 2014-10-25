@@ -49,9 +49,9 @@ func NewApi() API {
 			r.Post("/registrations", RegistrationHandler)
 
 	})
-	m.Group("/node", func(r martini.Router) {
-			r.Get("/:id", NodeDetail)
+	m.Group("/nodes", func(r martini.Router) {
 			r.Get("", NodeList)
+			r.Get("/:id", NodeDetail)
 	})
 
 	m.Get("/", HomePage)
@@ -90,8 +90,7 @@ func RegistrationHandler(w http.ResponseWriter, req *http.Request, db *gorm.DB) 
 		fmt.Println(err)
 	}
 
-	// Add 2 hours to the local time that somehow seems to bug?
-	m.RegistrationTime = time.Now().Local().Add(time.Hour).Add(time.Hour)
+	m.RegistrationTime = time.Now().Local()
 
 	relatedNode.Measurements = append(relatedNode.Measurements, m)
 	db.Save(&relatedNode)

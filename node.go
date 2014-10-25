@@ -35,7 +35,6 @@ func NodeList(w http.ResponseWriter, req *http.Request, db *gorm.DB, r render.Re
 
 	if query.Error != nil {
 		fmt.Println(query.Error)
-		return
 	}
 
 	r.HTML(200, "nodes/list", nodes)
