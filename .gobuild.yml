@@ -1,0 +1,8 @@
+author: me@oxysocks.com
+description: Web API for domotica use in Go
+filesets:
+includes:
+    - templates
+    - public
+    - README.md
+    - LICENSE
