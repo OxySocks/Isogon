@@ -15,7 +15,7 @@ import (
 
 type API *martini.ClassicMartini
 
-// Entrypoint to the DomotiSocks application.
+// Entrypoint to the IsoGOn application.
 func main() {
 	api := NewApi()
 	api.Run()
@@ -60,7 +60,7 @@ func NewApi() API {
 	return m
 }
 
-// Handler for the DomotiSocks homepage
+// Handler for the IsoGOn homepage
 // TODO: Expand homepage to be more informative.
 func HomePage(w http.ResponseWriter, req *http.Request, db *gorm.DB, r render.Render) {
 	r.HTML(200, "homepage", nil)

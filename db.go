@@ -6,7 +6,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// Initialization function that handles basic migration functions for the domotisocks system.
+// Initialization function that handles basic migration functions for the isogon system.
 // TODO: Make database settings configurable
 func init() {
 	databaseString := "port=" + Settings.DatabasePort + " host=" + Settings.DatabaseHost + " user=" + Settings.DatabaseUsername + " password=" + Settings.DatabasePassword + " dbname=" + Settings.DatabaseName + " sslmode=disable"
