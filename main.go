@@ -7,6 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
+	"html/template"
 	"github.com/codegangsta/martini-contrib/render"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/strict"
@@ -29,13 +30,19 @@ func NotFound(w http.ResponseWriter, req *http.Request, r render.Render) {
 func NewApi() API {
 	m := martini.Classic()
 
+	helpers := template.FuncMap{
+		"time": func(t time.Time) string {
+			const layout = "02-01-2006 15:04:05"
+			return t.Format(layout)
+		},
+	}
 	m.Use(dbMiddleware())
 	m.Use(render.Renderer(render.Options{
-		Directory: "templates",
 		Layout: "layout",
 		Extensions: []string{".tmpl", ".html"},
 		Charset: "UTF-8",
 		IndentJSON: true,
+		Funcs: []template.FuncMap{helpers},
 	}))
 
 	m.Use(martini.Static("public", martini.StaticOptions{
