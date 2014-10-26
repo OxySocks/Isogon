@@ -7,3 +7,6 @@ filesets:
         - public
         - README.md
         - LICENSE
+    excludes:
+        - \.git
+    depth: 3
