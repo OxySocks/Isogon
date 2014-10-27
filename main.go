@@ -36,7 +36,7 @@ func NewApi() API {
 			return t.Format(layout)
 		},
 	}
-	m.Use(dbMiddleware())
+	m.Use(GormMiddleware())
 	m.Use(render.Renderer(render.Options{
 		Layout: "layout",
 		Extensions: []string{".tmpl", ".html"},
