@@ -7,8 +7,8 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// Initialization function that handles basic migration functions for the isogon system.
-// TODO: Make database settings configurable
+// Initialization function that handles basic database functions for the isogon system.
+// This includes automatic database table creation and migration.
 func init() {
 	databaseString := "port=" + Settings.DatabasePort + " host=" + Settings.DatabaseHost + " user=" + Settings.DatabaseUsername + " password=" + Settings.DatabasePassword + " dbname=" + Settings.DatabaseName + " sslmode=disable"
 	db, err := gorm.Open("postgres", databaseString)
