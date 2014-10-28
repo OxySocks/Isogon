@@ -4,3 +4,4 @@ isogon
 *.iws
 *.ipr
 config.json
+/.idea

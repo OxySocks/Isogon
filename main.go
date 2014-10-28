@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"encoding/json"
 	"github.com/jinzhu/gorm"
-	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
 	"html/template"
 	"github.com/codegangsta/martini-contrib/render"
