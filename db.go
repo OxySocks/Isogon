@@ -30,8 +30,15 @@ func init() {
 		db.CreateTable(&Node{})
 	}
 
+	// Create a 'node' table if it does not exist.
+	if !db.HasTable(&User{}) {
+		fmt.Println("No user table found, creating one.")
+		db.CreateTable(&User{})
+	}
+
+
 	// GORM automatic migration.
-	db.AutoMigrate(&Measurement{}, &Node{})
+	db.AutoMigrate(&Measurement{}, &User{})
 }
 
 // Creates a gorm.Db database handler for martini

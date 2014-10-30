@@ -3,14 +3,17 @@ package main
 import (
 	"net/http"
 	"fmt"
+	"time"
 	"encoding/json"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
 	"html/template"
-	"github.com/codegangsta/martini-contrib/render"
+
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/strict"
-	"time"
+	"github.com/martini-contrib/binding"
+	"github.com/codegangsta/martini-contrib/render"
 )
 
 type API *martini.ClassicMartini
@@ -53,15 +56,20 @@ func NewApi() API {
 
 	m.Group("/api", func(r martini.Router) {
 			r.Post("/registrations", RegistrationHandler)
-
-	})
+		})
 	m.Group("/nodes", func(r martini.Router) {
 			r.Get("", NodeList)
 			r.Get("/:id", NodeDetail)
 	})
 
-	m.Get("/", HomePage)
+	m.Group("/user", func(r martini.Router) {
+			r.Get("/register",  func(res render.Render) {
+					res.HTML(200, "users/register", nil)
+				})
+			m.Post("/register", strict.ContentType("application/x-www-form-urlencoded"), binding.Form(User{}), binding.ErrorHandler, RegisterUser)
+	})
 
+	m.Get("/", HomePage)
 	m.Router.NotFound(strict.MethodNotAllowed, NotFound)
 	return m
 }
