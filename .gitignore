@@ -3,5 +3,5 @@ isogon
 *.iml
 *.iws
 *.ipr
-config.json
+isogon.json
 /.idea

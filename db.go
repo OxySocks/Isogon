@@ -10,7 +10,7 @@ import (
 // Initialization function that handles basic database functions for the isogon system.
 // This includes automatic database table creation and migration.
 func init() {
-	databaseString := "port=" + Settings.DatabasePort + " host=" + Settings.DatabaseHost + " user=" + Settings.DatabaseUsername + " password=" + Settings.DatabasePassword + " dbname=" + Settings.DatabaseName + " sslmode=disable"
+	databaseString := "port=" + Settings.Db.Port + " host=" + Settings.Db.Host + " user=" + Settings.Db.User + " password=" + Settings.Db.Password + " dbname=" + Settings.Db.DatabaseName + " sslmode=disable"
 	db, err := gorm.Open("postgres", databaseString)
 	defer db.Close()
 
@@ -36,7 +36,7 @@ func init() {
 
 // Creates a gorm.Db database handler for martini
 func GormMiddleware() martini.Handler {
-	databaseString := "port=" + Settings.DatabasePort + " host=" + Settings.DatabaseHost + " user=" + Settings.DatabaseUsername + " password=" + Settings.DatabasePassword + " dbname=" + Settings.DatabaseName + " sslmode=disable"
+	databaseString := "port=" + Settings.Db.Port + " host=" + Settings.Db.Host + " user=" + Settings.Db.User + " password=" + Settings.Db.Password + " dbname=" + Settings.Db.DatabaseName + " sslmode=disable"
 	db, err := gorm.Open("postgres", databaseString)
 
 	if(err != nil) {
