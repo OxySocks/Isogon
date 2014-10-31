@@ -14,6 +14,8 @@ import (
 	"github.com/martini-contrib/strict"
 	"github.com/martini-contrib/binding"
 	"github.com/codegangsta/martini-contrib/render"
+	"github.com/martini-contrib/sessions"
+
 )
 
 type API *martini.ClassicMartini
@@ -38,6 +40,9 @@ func NewApi() API {
 			return t.Format(layout)
 		},
 	}
+	store := sessions.NewCookieStore([]byte(Settings.CookieHash))
+	m.Use(sessions.Sessions("user", store))
+	m.Use(sessionValidator())
 	m.Use(GormMiddleware())
 	m.Use(render.Renderer(render.Options{
 		Layout: "layout",
@@ -58,17 +63,27 @@ func NewApi() API {
 			r.Post("/registrations", RegistrationHandler)
 		})
 	m.Group("/nodes", func(r martini.Router) {
-			r.Get("", NodeList)
+			r.Get("", ProtectedPage, NodeList)
 			r.Get("/:id", NodeDetail)
 	})
 
 	m.Group("/user", func(r martini.Router) {
-			r.Get("/register",  func(res render.Render) {
-					res.HTML(200, "users/register", nil)
+			r.Get("/register",  func(r render.Render) {
+					r.HTML(200, "users/register", nil)
 				})
 			m.Post("/register", strict.ContentType("application/x-www-form-urlencoded"), binding.Form(User{}), binding.ErrorHandler, RegisterUser)
+
 	})
 
+
+	m.Get("/login", func(r render.Render) {
+			r.HTML(200, "users/login", nil)
+		})
+	m.Get("/logout", func(r render.Render, s sessions.Session) {
+			s.Delete("user")
+			r.Redirect("/", 302)
+		})
+	m.Post("/login", strict.ContentType("application/x-www-form-urlencoded"), binding.Form(User{}), LoginUser)
 	m.Get("/", HomePage)
 	m.Router.NotFound(strict.MethodNotAllowed, NotFound)
 	return m

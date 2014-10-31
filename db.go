@@ -36,9 +36,8 @@ func init() {
 		db.CreateTable(&User{})
 	}
 
-
 	// GORM automatic migration.
-	db.AutoMigrate(&Measurement{}, &User{})
+	db.AutoMigrate(&Measurement{},&Node{}, &User{})
 }
 
 // Creates a gorm.Db database handler for martini

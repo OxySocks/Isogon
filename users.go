@@ -7,6 +7,7 @@ import (
 	"errors"
 
 	"github.com/codegangsta/martini-contrib/render"
+	"github.com/martini-contrib/sessions"
 )
 
 // Function that handles the registration of users. Currently only handles GET requests.
@@ -33,6 +34,61 @@ func RegisterUser(req *http.Request, r render.Render, db *gorm.DB, user User) {
 	}
 
 	r.Redirect("/", 302)
+}
+
+// Function that handles the login for Users. Compares the password available in the struct to the
+// Hashed password in the database. Sets session to include the user if login was successful.
+// If login went wrong, users will be redirected if they have provided invalid credentials,
+// If any other error occurs a 500 error will be thrown.
+func LoginUser(req *http.Request, s sessions.Session, res render.Render, db *gorm.DB, user User) {
+	user, err := user.Login(db)
+
+	if err != nil {
+		log.Println(err)
+
+		if err.Error() == "wrong username or password" || err.Error() == "not found" {
+			res.HTML(401, "user/login", "Wrong username or password.")
+			return
+		}
+		res.HTML(500, "user/login", "Internal server error. Please try again.")
+		return
+	}
+
+	s.Set("user", user.ID)
+	res.Redirect("/", 302)
+	return
+}
+
+// GORM wrapper function that grabs a user from the database given the information available in the struct.
+// Requires at least an ID to be set for this user so it can be grabbed from the database.
+func (user User) Get(db *gorm.DB) (User, error) {
+	query := db.Where(&User{ID: user.ID}).First(&user)
+
+	if query.Error != nil {
+		if query.Error == gorm.RecordNotFound {
+			return user, errors.New("not found")
+		}
+		return user, query.Error
+	}
+
+	return user, nil
+}
+
+// Function to grab a user from the current sesion. Returns an error if no User is stored in the session
+// Always returns a User struct, but it can/will be empty when no data was found.
+func (user User) FromSession(db *gorm.DB, s sessions.Session) (User, error) {
+	data := s.Get("user")
+	id, exists := data.(int64)
+	if exists {
+		var user User
+		user.ID = id
+		user, err := user.Get(db)
+		if err != nil {
+			return user, err
+		}
+		return user, nil
+	}
+	return user, errors.New("unauthorized")
 }
 
 // Method to get a user by  e-mail address. Used in forms as a User is returned from Martini bindings.
