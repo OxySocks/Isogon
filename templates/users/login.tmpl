@@ -1,8 +1,26 @@
-<form action="/user/login" method="post">
-    <fieldset>
-        <legend>Login to Isogon</legend>
-        <input type="email" name="email" placeholder="Email" required="required" autofocus>
-        <input type="password" name="password" placeholder="Password" required="required">
-        <button type="submit">Submit</button>
-    </fieldset>
+<form action="/login" method="post">
+    <div class="col-md-2 col-md-offset-5" style="margin-top:30px;">
+        <fieldset>
+            <div class="panel login">
+                <div class="panel-heading login">Login to Isogon</div>
+                <div class="panel-body" style="padding-top:20px;">
+                    {{if .}}
+                        <div class="alert alert-danger" role="alert">{{.}}</div>
+                    {{end}}
+                    <div class="input-group" style="margin-bottom:10px;">
+                        <span class="input-group-addon" style="min-width: 40px;"><i class="fa fa-envelope-o"></i></span>
+                        <input type="email" class="form-control" placeholder="E-mail" required="required">
+                    </div>
+
+                    <div class="input-group" style="margin-bottom:10px;">
+                        <span class="input-group-addon" style="min-width: 40px;"><i class="fa fa-lock"> </i></span>
+                        <input type="password" class="form-control" placeholder="Password" required="required">
+                    </div>
+
+                    <div style="margin-bottom:10px" class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" value="Submit">
+                    </div>
+                </div>
+        </fieldset>
+    </div>
 </form>

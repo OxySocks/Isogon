@@ -46,11 +46,12 @@ func LoginUser(req *http.Request, s sessions.Session, res render.Render, db *gor
 	if err != nil {
 		log.Println(err)
 
-		if err.Error() == "wrong username or password" || err.Error() == "not found" {
-			res.HTML(401, "user/login", "Wrong username or password.")
+		if err.Error() == "Wrong username or password." || err.Error() == "not found" {
+			res.HTML(401, "users/login", "Wrong username or password.")
 			return
 		}
-		res.HTML(500, "user/login", "Internal server error. Please try again.")
+		log.Println("[WARNING] Unhandled error caught at user login")
+		res.HTML(500, "users/login", "Internal server error. Please try again.")
 		return
 	}
 
