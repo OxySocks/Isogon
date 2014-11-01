@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"errors"
 
-	"github.com/codegangsta/martini-contrib/render"
+	"github.com/martini-contrib/render"
 	"github.com/martini-contrib/sessions"
 )
 

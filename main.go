@@ -13,9 +13,8 @@ import (
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/strict"
 	"github.com/martini-contrib/binding"
-	"github.com/codegangsta/martini-contrib/render"
+	"github.com/martini-contrib/render"
 	"github.com/martini-contrib/sessions"
-
 )
 
 type API *martini.ClassicMartini
@@ -74,7 +73,6 @@ func NewApi() API {
 			m.Post("/register", strict.ContentType("application/x-www-form-urlencoded"), binding.Form(User{}), binding.ErrorHandler, RegisterUser)
 
 	})
-
 
 	m.Get("/login", func(r render.Render) {
 			r.HTML(200, "users/login", nil)

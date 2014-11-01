@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 	"github.com/jinzhu/gorm"
-	"github.com/codegangsta/martini-contrib/render"
+	"github.com/martini-contrib/render"
 	"github.com/go-martini/martini"
 	"fmt"
 )
