@@ -7,14 +7,18 @@
                     {{if .}}
                         <div class="alert alert-danger" role="alert">{{.}}</div>
                     {{end}}
+
+                    <label for="emailField">E-mail address</label>
                     <div class="input-group" style="margin-bottom:10px;">
                         <span class="input-group-addon" style="min-width: 40px;"><i class="fa fa-envelope-o"></i></span>
-                        <input type="email" class="form-control" placeholder="E-mail" required="required">
+                        <input type="email" class="form-control" placeholder="E-mail" id="emailField" required="required">
                     </div>
 
+                    <label for="passwordField">Password</label>
                     <div class="input-group" style="margin-bottom:10px;">
+
                         <span class="input-group-addon" style="min-width: 40px;"><i class="fa fa-lock"> </i></span>
-                        <input type="password" class="form-control" placeholder="Password" required="required">
+                        <input type="password" class="form-control" placeholder="Password" id="passwordField" required="required">
                     </div>
 
                     <div style="margin-bottom:10px" class="form-group">
