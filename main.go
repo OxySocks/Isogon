@@ -64,6 +64,8 @@ func NewApi() API {
 	m.Group("/nodes", func(r martini.Router) {
 			r.Get("", ProtectedPage, NodeList)
 			r.Get("/:id", NodeDetail)
+			r.Get("/:id/edit", GetEditNode)
+			r.Post("/:id/edit", strict.ContentType("application/x-www-form-urlencoded"), binding.Form(Node{}), EditNode)
 	})
 
 	m.Group("/user", func(r martini.Router) {

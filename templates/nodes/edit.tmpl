@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="page-header">
+            <h1>Edit node "{{ .CanonicalName }}"</h1>
+        </div>
+
+        <form role="form" action="/nodes/{{ .Id }}/edit" method="post">
+            <div class="form-group">
+                <label for="canonicalName">Canonical name:</label>
+                <input type="text" name="canonical" class="form-control" id="canonicalName" value="{{ .CanonicalName }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

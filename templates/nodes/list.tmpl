@@ -1,14 +1,25 @@
 <div class="row">
     <div class="col-md-12">
-        {{range .}}
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a href="/nodes/{{ .Id }}">{{ .CanonicalName }}</a> [{{ .HardwareAddress }}]
-                </div>
-            </div>
+        <div class="panel-heading">
+            Nodes
         </div>
-        {{end}}
+        <table class="table table-bordered">
+            <thead>
+            <th>Name</th>
+            <th>Hardware Address</th>
+            <th>Edit</th>
+            </thead>
+
+            <tbody>
+                {{range .}}
+                    <tr>
+                        <td>{{ .CanonicalName }}</td>
+                        <td>{{ .HardwareAddress }}</td>
+                        <td><a href="/nodes/{{ .Id }}/edit" class="btn btn-primary btn-xs">Edit</a></td>
+                    </tr>
+                {{end}}
+            </tbody>
+        </table>
 
     </div>
 </div>

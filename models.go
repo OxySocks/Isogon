@@ -6,7 +6,7 @@ type Node struct {
 	Id int64 `json:"-"`
 	HardwareAddress string `json:"hw_address"`
 	Measurements []Measurement `json:"measurements"`
-	CanonicalName string `json:"canonical_name"`
+	CanonicalName string `json:"canonical_name" form:"canonical"`
 }
 
 type Measurement struct {
