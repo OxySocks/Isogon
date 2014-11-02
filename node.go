@@ -11,6 +11,7 @@ import (
 	"log"
 )
 
+// Utility method to get a node from the database by it's (contained) ID.
 func (node Node) Get(db *gorm.DB) (Node, error) {
 	query := db.Where(&Node{Id: node.Id}).First(&node)
 
@@ -24,6 +25,8 @@ func (node Node) Get(db *gorm.DB) (Node, error) {
 	return node, nil
 }
 
+// Utility method to update a node in the database from a specified entry.
+// Used in forms / martini bindings.
 func (node Node) Update(db *gorm.DB, entry Node) (Node, error) {
 	query := db.Where(&Node{Id: node.Id}).Find(&node).Updates(entry)
 	if query.Error != nil {
@@ -33,8 +36,8 @@ func (node Node) Update(db *gorm.DB, entry Node) (Node, error) {
 }
 
 
-// Function that handles the detail page of nodes. Returns the nodes/detail template.
-// Needs an id in the route parameter, or returns a 404.
+// Function that handles the editting of nodes. Uses martini.binding to bind to a form.
+// Returns 404 if the node was not found.
 func EditNode(w http.ResponseWriter, req *http.Request, db *gorm.DB, r render.Render, params martini.Params, entry Node) {
 	var node Node
 	id, err := strconv.ParseInt(params["id"], 10, 64)
@@ -68,6 +71,7 @@ func EditNode(w http.ResponseWriter, req *http.Request, db *gorm.DB, r render.Re
 	r.Redirect("/nodes", 302)
 }
 
+// Function that handles the GET method for editting nodes, showing the form.
 func GetEditNode(w http.ResponseWriter, req *http.Request, params martini.Params, r render.Render, db *gorm.DB) {
 	id, err := strconv.ParseInt(params["id"], 10, 64)
 
@@ -87,6 +91,7 @@ func GetEditNode(w http.ResponseWriter, req *http.Request, params martini.Params
 	r.HTML(200, "nodes/edit", node)
 }
 
+// Function that handles the detail page.
 func NodeDetail(w http.ResponseWriter, req *http.Request, db *gorm.DB, r render.Render, params martini.Params) {
 	id := params["id"]
 	var n Node

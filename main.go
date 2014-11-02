@@ -62,10 +62,10 @@ func NewApi() API {
 			r.Post("/registrations", RegistrationHandler)
 		})
 	m.Group("/nodes", func(r martini.Router) {
-			r.Get("", ProtectedPage, NodeList)
+			r.Get("", NodeList)
 			r.Get("/:id", NodeDetail)
-			r.Get("/:id/edit", GetEditNode)
-			r.Post("/:id/edit", strict.ContentType("application/x-www-form-urlencoded"), binding.Form(Node{}), EditNode)
+			r.Get("/:id/edit", ProtectedPage, GetEditNode, ProtectedPage)
+			r.Post("/:id/edit", ProtectedPage, strict.ContentType("application/x-www-form-urlencoded"), binding.Form(Node{}), EditNode)
 	})
 
 	m.Group("/user", func(r martini.Router) {
