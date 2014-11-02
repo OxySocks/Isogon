@@ -13,7 +13,7 @@
             <tbody>
                 {{range .}}
                     <tr>
-                        <td>{{ .CanonicalName }}</td>
+                        <td><a href="/nodes/{{ .Id }}">{{ .CanonicalName }}</a></td>
                         <td>{{ .HardwareAddress }}</td>
                         <td><a href="/nodes/{{ .Id }}/edit" class="btn btn-primary btn-xs">Edit</a></td>
                     </tr>
